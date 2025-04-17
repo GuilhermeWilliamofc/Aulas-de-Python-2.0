@@ -27,7 +27,7 @@ proibidos = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '/
 while True:
     while True:
         nome = input('Nome: ').strip().capitalize()
-        if nome == '' or nome.isnumeric() == True or any(caracteres in proibidos for caracteres in nome):
+        if nome == '' or nome.isnumeric() or any(caracteres in proibidos for caracteres in nome):
             print('\033[31mErro: Por favor, digite um nome válido!\033[m')
         else: 
             break
@@ -35,7 +35,7 @@ while True:
     while True:
         try:
             altura = float(input('Altura: '))
-        except:
+        except (ValueError, KeyboardInterrupt):
             print('\033[31mErro: Por favor, digite uma altura válida!\033[m')
         else:
             break
@@ -43,7 +43,7 @@ while True:
     while True:
         try:
             idade = int(input('Idade: '))
-        except:
+        except (ValueError, KeyboardInterrupt):
             print('\033[31mErro: Por favor, digite uma idade válida!\033[m')
         else:
             break
@@ -59,7 +59,7 @@ while True:
     while resposta not in 'sn':
         try:
             resposta = input('\033[33mDeseja Continuar? [S/N]: \033[m').strip().lower()[0]
-        except:
+        except (ValueError, KeyboardInterrupt):
             pass
         if resposta not in 'sn':
             print('\033[31mErro: Por favor, digite sim ou não!\033[m')

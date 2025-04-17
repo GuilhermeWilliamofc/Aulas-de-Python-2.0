@@ -12,9 +12,9 @@ class Pessoa:
     def set_cpf(self, novo_cpf):
         if novo_cpf.isdigit() and len(novo_cpf) == 11:
             self.__cpf = novo_cpf
-            print(f'\033[32mCPF alterado com sucesso!\033[m')
+            print('\033[32mCPF alterado com sucesso!\033[m')
         else:
-            print(f'\033[31mCPF inválido!\033[m')
+            print('\033[31mCPF inválido!\033[m')
 
 pessoa = Pessoa('Guilherme', '12345678900')
 pessoa.mostrar_dados()

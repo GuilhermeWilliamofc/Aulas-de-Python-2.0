@@ -42,7 +42,7 @@ def ler_nome():
                 break
             else:
                 erro('Nome', False)            
-        except:
+        except KeyboardInterrupt:
             print('')
             erro('Nome', False)
 
@@ -61,7 +61,7 @@ def ler_idade():
         except KeyboardInterrupt:
             print('')
             erro('Idade', True)
-        except:
+        except ValueError:
             erro('Idade', True)
         else:
             break

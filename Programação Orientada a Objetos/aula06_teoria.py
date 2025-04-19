@@ -83,4 +83,4 @@ def erro(tipo, genero = False):
     print(f'\033[31mErro: Por Favor, Digite {genero_1} {tipo} Válid{genero_2}!\033[m')
 
 
-input_cadastrar()
+# input_cadastrar()

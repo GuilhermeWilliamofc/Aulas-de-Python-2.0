@@ -14,7 +14,7 @@ async def chamada_api(cliente: any, nome: str):
     tipo_original = str(data['types'][0]['type']['name'])
 
     habilidade = await tradutor(habilidade_original) # tava dando dor de cabeça usar essa função nova de traduzir q nem ensinou no vídeo mas tava dando erro pq esqueci do await
-    tipo = await tradutor(tipo_original)
+    tipo = await tradutor(tipo_original) # dá para usar asyncio.create_task()...
 
     print(f'\033[34mDados do Pokémon ({nome.capitalize()}):\033[m') # print com os dados filtrados
     print(f'\033[35mNome:\033[33m {nome.capitalize()}\n\033[32mTipo: \033[33m{tipo.capitalize()}\n\033[36mHabilidade: \033[33m{habilidade.capitalize()}\033[m')

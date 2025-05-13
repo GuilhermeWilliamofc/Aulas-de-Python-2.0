@@ -22,7 +22,7 @@ class Arquivo:
             print("\033[32mLista carregada com sucesso!\033[m")
             return lista_filmes
 
-    def salvar_lista(self, lista: list):
+    def salvar_lista(self, lista: list) -> None:
         """Salva a lista de filmes em um arquivo .pkl
 
         Argumentos:
@@ -41,12 +41,12 @@ class Input_de_Dados:
         Retorna:
             int: a opção escolhida pelo usuário
         """
+        opcao = 0  # pyright reclamou para declarar essa variavel fora do try
         while True:
             print("\033[33m[ 1 ] - Adicionar Filme")
             print("[ 2 ] - Ver Lista de Filmes")
             print("[ 3 ] - Sair do Programa\033[m")
             try:
-                opcao = 0
                 opcao = int(input("\033[34mSua opção: \033[m"))
             except ValueError:
                 pass
@@ -68,6 +68,7 @@ class Input_de_Dados:
         Retorna:
             str: o título digitado pelo usuário
         """
+        filme = ""  # pyright também teve a mesma reclamação da declaração de variável dentro de um try
         while True:
             try:
                 filme = input("\033[33mTítulo do Filme: \033[m").strip().title()
@@ -75,9 +76,9 @@ class Input_de_Dados:
                 print("")
             try:
                 if filme == "":
-                    print("\033[31mErro: Por favor, Digite um filme válido!\033[m")
+                    raise NameError
             except NameError:
-                print("\033[31mErro: Por favor, Digite um produto válido!\033[m")
+                print("\033[31mErro: Por favor, Digite um filme válido!\033[m")
             else:
                 break
 
@@ -116,8 +117,7 @@ class Input_de_Dados:
             except KeyboardInterrupt:
                 print("")
                 print("\033[31mErro: Por favor, Digite somente S ou N!\033[m")
-        if resposta == "n":
-            return resposta
+        return resposta  # pyright reclamou de um if aqui, realmente ele n fazia sentido
 
 
 class Lista:

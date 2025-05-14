@@ -34,6 +34,15 @@ class ListaEncadeada:
             nó_atual = nó_atual.próximo_nó  # muda para o próximo nó
         print("None")  # quando o while acabar printa None
 
+    def remover_ultimo_item(self):
+        nó_atual = self.cabeça
+        while nó_atual.próximo_nó.próximo_nó is not None:
+            # percorre a lista até o penúltimo valor
+            nó_atual = nó_atual.próximo_nó
+
+        nó_atual.próximo_nó = None
+        # o valor após o penúltimo (também conhecido como último) vira None
+
 
 lista = ListaEncadeada()
 lista.printar_lista_encadeada()
@@ -48,4 +57,7 @@ lista.inserir(10)
 lista.printar_lista_encadeada()
 
 lista.inserir(77)
+lista.printar_lista_encadeada()
+
+lista.remover_ultimo_item()
 lista.printar_lista_encadeada()

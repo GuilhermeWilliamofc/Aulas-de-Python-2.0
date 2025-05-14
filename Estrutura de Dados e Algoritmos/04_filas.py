@@ -32,6 +32,7 @@ class Pilha:
 class Fila:
     def __init__(self):
         self.entrada_de_dados = Pilha()
+        # aqui eu usei pilhas mas a lista encadeada também serve (que também pode ser usada nas pilhas)
         self.saida_de_dados = Pilha()
 
     def tamanho(self):

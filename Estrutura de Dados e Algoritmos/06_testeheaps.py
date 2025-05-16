@@ -1,7 +1,13 @@
 import heapq
 from time import sleep
 
-pessoas = [(25, "Ana"), (30, "Bruno"), (18, "Carlos"), (40, "Daniela")]
+pessoas = [
+    (25, "Ana"),
+    (30, "Bruno"),
+    (18, "Carlos"),
+    (40, "Daniela"),
+    (35, "Vinicius"),
+]
 pessoas = [(-idade, nome) for idade, nome in pessoas]
 # transformando todas as idades em números negativos para fazer o max-heap
 heapq.heapify(pessoas)

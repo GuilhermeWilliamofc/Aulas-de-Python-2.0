@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Teste - Página Teste</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='site_teste_pagina2.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <header>
+        <h1><a href="/" style="color: inherit; text-decoration: none;">Página Teste</a></h1> <!--Quando clicar no titulo é redirecionado para a homepage-->
+    </header>
+
+    <section>
+        <div>Teste...</div>
+    </section>
+
+    <footer>
+        <p>&copy; Guilherme William</p>
+    </footer>
+    <script src="{{ url_for('static', filename='site_teste_pagina2.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Teste - Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='site_teste_homepage.css') }}"> <!--"{{ url_for('static', filename='site_teste_homepage.css') }}"-->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}"> <!-- Favicon -->
+</head>
+<body>
+    <header>
+        <h1 id="titulo"><a href="/" style="color: inherit; text-decoration: none;">Homepage</a></h1>
+    </header>
+
+    <section>
+        <div>Bem-Vindo a Homepage desse site!...</div>
+        <img id="imagem" src="{{ url_for('static', filename='imagem_homepage.jpg') }}" alt="imagem"> <!--"{{ url_for('static', filename='imagem_homepage.jpg') }}"-->
+        <div id="data"></div>
+        <a href="/pagina2" id="pagina2">Página Teste</a> <!--Link para a página teste-->
+    </section>
+
+    <footer>
+        <p>&copy; Guilherme William</p>
+    </footer>
+    <script src="{{ url_for('static', filename='site_teste_homepage.js') }}"></script> <!--"{{ url_for('static', filename='site_teste_homepage.js') }}"-->
+</body>
+</html>

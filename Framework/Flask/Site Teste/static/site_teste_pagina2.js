@@ -1,0 +1,1 @@
+alert('Bem-Vindo a Página Teste!')

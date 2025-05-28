@@ -9,8 +9,18 @@ from flask import render_template  # procura a pasta templates do meu html
 
 @app.route("/")  # rota da homepage, o app é o nome da variavel app criada no main.py
 def homepage():  # o nome da função pode ser oq vc quiser
-    return render_template("site_teste_homepage.html") # você retorna oq quer exibir
+    return render_template("site_teste_homepage.html")  # você retorna oq quer exibir
 
-@app.route('/pagina2')
+
+@app.route("/pagina2")
 def pagina2():
-    return render_template('site_teste_pagina2.html')
+    return render_template("site_teste_pagina2.html")
+
+
+@app.route(
+    "/usuario/<nome_usuario>"
+)  # coloca a variavel entre delimitadores de tags (< >)
+def usuario(nome_usuario):  # coloca o mesmo nome da variavel dentro dos parenteses
+    return render_template(
+        "site_teste_usuario.html", nome_usuario=nome_usuario
+    )  # no render template coloca: variavel = variavel

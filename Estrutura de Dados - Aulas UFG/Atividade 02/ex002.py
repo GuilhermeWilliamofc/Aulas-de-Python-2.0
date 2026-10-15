@@ -10,23 +10,21 @@ import ex001
 
 teste = "{a+[b*(c-d)]}"
 pilha = ex001.Pilha()
+pares = {"}": "{", "]": "[", ")": "("}
+aberturas = set(pares.values())
+
+balanceado = True
 
 for caractere in teste:
-    if caractere in ["{", "[", "("]:
+    if caractere in aberturas:
         pilha.empilhar(caractere)
-        pilha.imprimir()
-    elif caractere in ["}", "]", ")"]:
-        if caractere == "}":
-            if pilha.buscar("{") == 0:
-                pilha.desempilhar()
-                pilha.imprimir()
-        elif caractere == "]":
-            if pilha.buscar("[") == 0:
-                pilha.desempilhar()
-                pilha.imprimir()
-        elif caractere == ")":
-            if pilha.buscar("(") == 0:
-                pilha.desempilhar()
-                pilha.imprimir()
+    elif caractere in pares:
+        if pilha.buscar(pares[caractere]) != 0:
+            balanceado = False
+            break
+        pilha.desempilhar()
 
-pilha.imprimir()
+if pilha.obterQuantidade() > 0:
+    balanceado = False
+
+print(balanceado)

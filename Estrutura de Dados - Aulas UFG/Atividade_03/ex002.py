@@ -9,11 +9,12 @@ class No:
         self.anterior = anterior
         self.proximo = proximo
 
-class Deque:
-    def __init__(self):
+class Fila_Circular:
+    def __init__(self, capacidade = 4):
         self.inicio = None
         self.fim = None
         self.quantidade = 0
+        self.capacidade = capacidade
 
     def estaVazia(self):
         return self.quantidade == 0
@@ -21,82 +22,108 @@ class Deque:
     def obterQuantidade(self):
         return self.quantidade
 
-    def inserirInicio(self, valor):
+    def inserir(self, valor):
+        if self.quantidade == self.capacidade:
+            return
+        
         novo = No(valor)
 
         # se estiver vazia
         if self.estaVazia():
             self.inicio = novo
             self.fim = novo
+            self.fim.proximo = self.inicio
+            self.inicio.anterior = self.fim
         # se estiver com pelo menos 1 elemento
-        elif self.inicio is not None:
-            novo.proximo = self.inicio
-            self.inicio.anterior = novo
-            self.inicio = novo
-
-        self.quantidade += 1
-
-    def inserirFinal(self, valor):
-        novo = No(valor)
-
-        # se estiver vazia
-        if self.estaVazia():
-            self.inicio = novo
-            self.fim = novo
-        # se estiver com pelo menos 1 elemento
-        elif self.fim is not None:
+        elif self.fim is not None and self.inicio is not None:
             novo.anterior = self.fim
             self.fim.proximo = novo
             self.fim = novo
+            self.fim.proximo = self.inicio
+            self.inicio.anterior = self.fim
 
         self.quantidade += 1
 
-    def removerInicio(self):
-        if self.estaVazia():
-            return
+    def remover(self, valor):
+        if self.estaVazia() or self.inicio is None:
+            return False
 
-        if self.inicio is not None:
-            removido = self.inicio
-            novo_inicio = self.inicio.proximo
-            self.inicio = novo_inicio
+        atual = self.inicio
 
-            if novo_inicio is None:
-                self.fim = None
-            else:
-                novo_inicio.anterior = None
+        for i in range(self.quantidade):
 
-            self.quantidade -= 1
-            return removido.valor
+            if atual is None:
+                return False
 
-    def removerFinal(self):
-        if self.estaVazia():
-            return
+            if atual.valor == valor:
 
-        if self.fim is not None:
-            removido = self.fim
-            novo_fim = self.fim.anterior
-            self.fim = novo_fim
+                # Se existir apenas um elemento
+                if self.quantidade == 1:
+                    self.inicio = None
+                    self.fim = None
 
-            if novo_fim is None:
-                self.inicio = None
-            else:
-                novo_fim.proximo = None
+                # Se for o primeiro
+                elif atual == self.inicio:
+                    if atual.proximo is None or self.fim is None:
+                        return False
 
-            self.quantidade -= 1
-            return removido.valor
+                    self.inicio = atual.proximo
+                    self.inicio.anterior = self.fim
+                    self.fim.proximo = self.inicio
+
+                # Se for o último
+                elif atual == self.fim:
+                    if atual.anterior is None or self.inicio is None:
+                        return False
+
+                    self.fim = atual.anterior
+                    self.fim.proximo = self.inicio
+                    self.inicio.anterior = self.fim
+
+                # Se estiver no meio
+                else:
+                    if atual.anterior is None or atual.proximo is None:
+                        return False
+
+                    atual.anterior.proximo = atual.proximo
+                    atual.proximo.anterior = atual.anterior
+
+                self.quantidade -= 1
+                return True
+
+            atual = atual.proximo
+
+        return False
 
     def imprimir(self):
         if self.estaVazia():
-            print("Deque Vazio")
+            print("Fila Vazia")
             return
 
         atual = self.inicio
 
-        while atual is not None:
-            if atual.proximo is None:
-                print(f"{atual.valor}")
-                atual = atual.proximo
-                break
+        for i in range(self.quantidade):
+            if atual is None:
+                return
 
-            print(f"{atual.valor}", end=", ")
+            print(atual.valor, end=" ")
             atual = atual.proximo
+
+        print()
+
+if __name__ == "__main__":
+    fila = Fila_Circular()
+    fila.inserir("A")
+    fila.inserir("B")
+    fila.inserir("C")
+    fila.imprimir()
+
+    fila.remover("A")
+    fila.remover("B")
+    fila.imprimir()
+
+    fila.inserir("D")
+    fila.inserir("E")
+    fila.inserir("F")
+    fila.inserir("G") # "G" nao eh inserido
+    fila.imprimir()
